@@ -28,8 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR, ]
-STATIC_URL = '/static/'
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Application definition
 
@@ -69,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -120,8 +120,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATICFILES_DIRS = [STATIC_DIR, ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'

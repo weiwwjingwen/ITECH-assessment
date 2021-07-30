@@ -12,16 +12,25 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
+
+# Use the login_required() decorator to ensure only those logged in can # access the view.
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+    # Take the user back to the homepage.
+    return redirect(reverse('rango:index'))
+
+@login_required
+def restricted(request):
+    return HttpResponse("Since you're logged in, you can see this text!")
 
 def user_login(request):
 # If the request is a HTTP POST, try to pull out the relevant information. 
     if request.method == 'POST':
-        # Gather the username and password provided by the user.
-        # This information is obtained from the login form.
-        # We use request.POST.get('<variable>') as opposed
-        # to request.POST['<variable>'], because the
-# request.POST.get('<variable>') returns None if the
-# value does not exist, while request.POST['<variable>'] # will raise a KeyError exception.
         username = request.POST.get('username')
         password = request.POST.get('password')
 # Use Django's machinery to attempt to see if the username/password # combination is valid - a User object is returned if it is.

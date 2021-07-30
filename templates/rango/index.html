@@ -17,17 +17,30 @@
     </div>
 
     <div>   
-
+        <h2>Most liked Categories</h2>
     {% if categories %}
         <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li> 
-            {% endfor %}
-            </ul> 
+        {% for category in categories %} <li>
+                <!-- The following line is changed to add an HTML hyperlink -->
+        <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a> </li>
+        {% endfor %} </ul> 
         {% else %}
             <strong>There are no categories present.</strong> 
         {% endif %}
         </div>
+        <div>   
+            <h2>Most viewd Pages</h2>
+        {% if pages %}
+            <ul>
+            {% for page in pages %} <li>
+                    <!-- The following line is changed to add an HTML hyperlink -->
+            <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a> </li>
+            {% endfor %} </ul> 
+            {% else %}
+                <strong>There are no categories present.</strong> 
+            {% endif %}
+            </div>
+
 
         <div>
         <a href="/rango/about/">About Rango</a><br />

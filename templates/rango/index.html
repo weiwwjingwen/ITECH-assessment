@@ -1,27 +1,26 @@
-<!DOCTYPE html>
+{%extends'rango/base.html'%} 
+
 
 {%loadstaticfiles%} 
-<html>
-
-    <head>
-        <title>Rango</title>
-    </head>
 
 
-    <body>
-        <h1>Rango says...</h1> 
-        <div>
-            hey there partner! <br/> 
-            <strong>{{ boldmessage }}</strong>
+{%blocktitle_block%} 
+    Homepage
+{%endblock%}
 
-    </div>
 
-    <div>  
-        <ahref="/rango/add_category/">AddaNewCategory</a><br/> 
-        <h2>Most liked Categories</h2>
-    {% if categories %}
-        <ul>
-            {% for category in categories %} <li>
+{%blockbody_block%} 
+<h1>Rango says...</h1> 
+<div>
+    hey there partner! <br/> 
+    <strong>{{ boldmessage }}</strong>
+</div>
+
+<div>  
+    <h2>Most liked Categories</h2>
+{% if categories %}
+     <ul>
+        {% for category in categories %} <li>
                 <a href="{% url 'rango:show_category' category.slug %}"> {{ category.name }}
                 </a> </li>
                 {% endfor %}</ul> 
@@ -29,6 +28,8 @@
             <strong>There are no categories present.</strong> 
         {% endif %}
         </div>
+
+
         <div>   
             <h2>Most viewd Pages</h2>
         {% if pages %}
@@ -49,8 +50,7 @@
                 alt="Picture of Rango" />
 
         </div> 
-    </body>
-</html>
+{ %endblock%}
 
 
 
